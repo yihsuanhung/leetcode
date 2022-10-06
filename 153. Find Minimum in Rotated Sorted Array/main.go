@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	nums := []int{3, 4, 5, 1, 2}
+	nums := []int{1, 3, 5}
 	fmt.Println(findMin(nums))
 }
 
@@ -16,7 +16,7 @@ func findMin(nums []int) int {
 	l, r := 0, len(nums)-1
 	for l+1 != r {
 		m := (l + r) / 2
-		if nums[m] > nums[l] && nums[m] > nums[r] {
+		if nums[m] >= nums[l] && nums[m] >= nums[r] {
 			l = m
 		} else {
 			r = m
