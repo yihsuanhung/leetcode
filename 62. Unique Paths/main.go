@@ -4,6 +4,7 @@ import "fmt"
 
 func main() {
 	fmt.Println(uniquePaths(18, 18))
+	fmt.Println(tabulationUniquePath(18, 18))
 }
 
 func uniquePaths(m int, n int) int {
@@ -40,4 +41,30 @@ func mUniquePaths(m int, n int, memo map[string]int) int {
 
 	return paths
 
+}
+
+func tabulationUniquePath(m, n int) int {
+
+	// initialize a table
+	table := make([][]int, m+1)
+	for i := 0; i <= m; i++ {
+		row := make([]int, n+1)
+		table[i] = row
+	}
+	table[1][1] = 1
+
+	// iteration
+	for i := 0; i <= m; i++ {
+		for j := 0; j <= n; j++ {
+			current := table[i][j]
+			if i+1 <= m {
+				table[i+1][j] += current
+			}
+			if j+1 <= n {
+				table[i][j+1] += current
+			}
+		}
+	}
+
+	return table[m][n]
 }
