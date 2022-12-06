@@ -3,33 +3,24 @@ package main
 import "fmt"
 
 func main() {
-	prices := []int{7, 6, 4, 3, 1}
+	prices := []int{7, 1, 5, 3, 6, 4}
 	answer := maxProfit(prices)
 
 	fmt.Println(answer)
 }
 
 func maxProfit(prices []int) int {
-	var min int = prices[0]
-	var profit int
+	min := prices[0]
+	profit := 0
 
-	for i := 1; i < len(prices); i++ {
-
-		if prices[i] > min {
-			// 有獲利
-
-			if prices[i]-min > profit {
-				profit = prices[i] - min
-			}
-
+	for _, price := range prices {
+		if price < min {
+			min = price
 		} else {
-			//沒有獲利
-
-			min = prices[i]
-
+			if price-min > profit {
+				profit = price - min
+			}
 		}
-
 	}
-
 	return profit
 }
